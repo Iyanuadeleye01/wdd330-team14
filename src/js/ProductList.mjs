@@ -3,11 +3,11 @@ import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
     return `<li class="product-card">
-        <a href="product_pages/?product=">
-        <img src="" alt="Image of">
-        <h2 class="card_brand"></h2>
-        <h3 class="card_name"></h3>
-        <p class="product-card_price">$</p>
+        <a href="product_pages/?product=${product.Id}">
+        <img src="${product.Image}" alt="Image of">
+        <h2 class="card_brand">${product.Brand.Name}</h2>
+        <h3 class="card_name">${product.Name}</h3>
+        <p class="product-card_price">$${product.FinalPrice}</p>
         </a>
     </li>`
 };
@@ -24,16 +24,17 @@ export default class ProductList {
     }
 
     async init (){
-        const list = await this.datasource.getData();
+        const list = await this.dataSource.getData();
         this.renderList(list);
     }
 
-}
 
- function renderList(list){
-    renderListWithTemplate(
+
+    renderList(list){
+        renderListWithTemplate(
         productCardTemplate,
         this.listElement,
         list
     );
 };
+}
