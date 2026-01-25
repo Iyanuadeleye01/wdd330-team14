@@ -10,10 +10,10 @@ function productCardTemplate(product) {
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
       <button class="favorite-btn" data-id="${product.Id}">
-      ♡ Add to Favorites
+        ♡ Add to Favorites
       </button>
     </li>
-    `;
+  `;
 }
 
 export default class ProductList {
@@ -26,37 +26,39 @@ export default class ProductList {
   async init() {
     const list = await this.dataSource.getData();
     this.renderList(list);
+    this.addFavoriteListeners(); // attach favorite listeners after rendering
+    this.markSavedFavorites();   // update button states for already saved favorites
   }
 
   renderList(list) {
-    // const htmlStrings = list.map(productCardTemplate);
-    // this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-
-    // apply use new utility function instead of the commented code above
     renderListWithTemplate(productCardTemplate, this.listElement, list);
-
-
   }
 
-}
-
-
-
-function addFavoriteListener() {
-  document.querySelectorAll(".favorite-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      const id = e.target.dataset.id;
-      saveFavorite(id);
-      e.target.textContent = "♥ Saved";
+  addFavoriteListeners() {
+    const buttons = this.listElement.querySelectorAll('.favorite-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = btn.dataset.id;
+        this.saveFavorite(id);
+        btn.textContent = '♥ Saved';
+      });
     });
-  });
-}
+  }
 
-function saveFavorite(productId) {
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  
-  if (!favorites.includes(productId)) {
-    favorites.push(productId);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+  saveFavorite(productId) {
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (!favorites.includes(productId)) {
+      favorites.push(productId);
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+  }
+
+  markSavedFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    this.listElement.querySelectorAll('.favorite-btn').forEach(btn => {
+      if (favorites.includes(btn.dataset.id)) {
+        btn.textContent = '♥ Saved';
+      }
+    });
   }
 }
