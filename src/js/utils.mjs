@@ -38,3 +38,10 @@ export function renderListWithTemplate(template, parentElement, list, position =
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function getPublicImagePath(imgPath) {
+  // Remove any "../" from the JSON path and prepend correct folder
+  // Assuming all images are under src/public/images/...
+  if (!imgPath) return "";
+  return imgPath.replace(/^(\.\.\/)+/, "src/public/");
+}
