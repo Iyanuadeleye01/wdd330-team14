@@ -1,10 +1,15 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import {  renderListWithTemplate } from "./utils.mjs";
+
+
 
 function productCardTemplate(product) {
+  // Adjust path for images to always point to 'public/images/...'
+  const imagePath = product.Image.replace('../images/', './public/images/');
+
   return `
     <li class="product-card">
       <a href="product_pages/?product=${product.Id}">
-        <img src="${product.Image}" alt="${product.Name}">
+        <img src="${imagePath}" alt="${product.Name}">
         <h2>${product.Brand.Name}</h2>
         <h3>${product.Name}</h3>
         <p class="product-card__price">$${product.FinalPrice}</p>
@@ -15,6 +20,8 @@ function productCardTemplate(product) {
     </li>
   `;
 }
+
+
 
 export default class ProductList {
   constructor(category, dataSource, listElement) {
