@@ -3,6 +3,7 @@ import { renderListWithTemplate } from './utils.mjs';
 // Template function for product cards
 function productCardTemplate(product) {
     return `<li class="product-card">
+    <p>15%</p>
     <a href="../product_pages/index.html?product=${product.Id}">
       <img
         src="${product.Image}"
@@ -11,6 +12,7 @@ function productCardTemplate(product) {
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p>
+      <p> discountedPrice: $${product.FinalPrice-(0.15)*product.FinalPrice}</p>
     </a>
   </li>`;
 }

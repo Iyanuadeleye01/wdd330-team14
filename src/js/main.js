@@ -10,3 +10,4 @@ const productListElement = document.querySelector(".product-list");
 // Create and initialize ProductList
 const productList = new ProductList("tents", dataSource, productListElement);
 productList.init();
+
