@@ -6,22 +6,20 @@ function productCardTemplate(product) {
   // Adjust path for images to always point to 'public/images/...'
   // const imagePath = product.Image.replace('../images/', './public/images/');
 
-  return `
+ return `
     <li class="product-card">
-      <a href="product_pages/?product=${product.Id}">
-        <img src="${product.Image}" alt="${product.Name}">
-        <h2>${product.Brand.Name}</h2>
-        <h3>${product.Name}</h3>
+      <a href="../product_pages/index.html?product=${product.Id}">
+        <img
+          src="${product.Images.PrimaryMedium}"
+          alt="${product.Name}"
+        />
+        <h3 class="card__brand">${product.Brand.Name}</h3>
+        <h2 class="card__name">${product.NameWithoutBrand}</h2>
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
-      <button class="favorite-btn" data-id="${product.Id}">
-        ♡ Add to Favorites
-      </button>
     </li>
   `;
 }
-
-
 
 export default class ProductList {
   constructor(category, dataSource, listElement) {
@@ -31,7 +29,7 @@ export default class ProductList {
   }
 
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     this.renderList(list);
     this.addFavoriteListeners(); // attach favorite listeners after rendering
     this.markSavedFavorites();   // update button states for already saved favorites

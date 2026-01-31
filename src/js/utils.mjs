@@ -24,10 +24,8 @@ export function setClick(selector, callback) {
 
 // get the product id from the query string
 export function getParam(param) {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const products = urlParams.get(param);
-  return products
+  const url = new URL(window.location);
+  return url.searchParams.get(param);
 }
 
 export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {

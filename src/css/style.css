@@ -275,3 +275,20 @@ footer {
   font-weight: bold;
   font-size: 1.2rem;
 }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+
+.category-grid a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.category-grid img {
+  width: 80px;
+  height: auto;
+}
