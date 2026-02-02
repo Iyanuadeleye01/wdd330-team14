@@ -31,7 +31,7 @@ export default class ProductList {
   }
 
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
     this.renderList(list);
     this.addFavoriteListeners(); // attach favorite listeners after rendering
     this.markSavedFavorites();   // update button states for already saved favorites
