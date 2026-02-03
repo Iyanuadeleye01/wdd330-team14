@@ -8,8 +8,8 @@ function productCardTemplate(product) {
 
   return `
     <li class="product-card">
-      <a href="product_pages/?product=${product.Id}">
-        <img src="${product.Image}" alt="${product.Name}">
+      <a href="../product_pages/?product=${product.Id}">
+        <img  src="${product.Images?.PrimaryMedium || '/images/placeholder.png'}"  alt="${product.Name}">
         <h2>${product.Brand.Name}</h2>
         <h3>${product.Name}</h3>
         <p class="product-card__price">$${product.FinalPrice}</p>
@@ -31,11 +31,22 @@ export default class ProductList {
   }
 
   async init() {
-    const list = await this.dataSource.getData();
+    const list = await this.dataSource.getData(this.category);
+    this.updateTitle();
     this.renderList(list);
     this.addFavoriteListeners(); // attach favorite listeners after rendering
     this.markSavedFavorites();   // update button states for already saved favorites
   }
+
+  updateTitle() {
+  const titleElement = document.querySelector(".category");
+  if (titleElement && this.category) {
+    // Capitalize first letter of category
+    const categoryName = this.category.charAt(0).toUpperCase() + this.category.slice(1);
+    titleElement.textContent = `Top Products: ${categoryName}`;
+  }
+}
+
 
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
