@@ -27,7 +27,7 @@ export default class ProductDetails {
   }
 
   renderProductDetails() {
-  const main = document.querySelector("main");
+  const main = document.querySelector(".divider");
   main.innerHTML = productDetailsTemplate(this.product);
 }
 
@@ -42,7 +42,7 @@ function productDetailsTemplate(product) {
     <h2 class="divider">${product.NameWithoutBrand}</h2>
     <img
       class="divider"
-      src="${product.Images?.PrimaryLarge || '/images/placeholder.png'}"
+      src="${product.Image}"
       alt="${product.NameWithoutBrand}"
     />
     <p class="product-card__price">$${product.FinalPrice}</p>

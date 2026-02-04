@@ -36,8 +36,8 @@ export async function loadTemplate(path) {
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get(param);
-  return product
+  const products = urlParams.get(param);
+  return products
 }
 
 export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
