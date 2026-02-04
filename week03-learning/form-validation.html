@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/validate.css">
+    <script src="./scripts/validate.js" defer></script>
+</head>
+<body>
+    <h1>Form Validation</h1>
+    <main>
+        <h3>Future Value</h3>
+        <div class="gridform">
+            <label for="principle">Principle: </label>
+            <input type="text" id="principle" required>
+            <label for="principle">Confirm Principle: </label>
+            <input type="text" id="confirm-principle" required>
+            <label for="principle" id="c-principle"></label>
+            <div id="c-principle"></div>
+            <label for="annualrate">Annual rate: </label>
+            <input type="text" id="annualrate" placeholder=".08" required>
+            <label for="years">Years: </label>
+            <input type="text" id="years" required>
+            <label for="periods">Periods: </label>
+            <input type="text" id="periods" required>
+        </div>
+        <button class="compute">Compute Future Value</button>
+        <hr> Future Value: <span id="output"></span>
+    </main>
+    <footer>
+        &copy;<span id="theyear"></span> • Antonia Francesca • Utah • WDD</footer>
+</body>
+</html>
