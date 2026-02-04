@@ -6,7 +6,7 @@ loadHeaderFooter();
 function cartItemTemplate(item) {
   return `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
-      <img  src="${item.Images?.PrimaryMedium || '/images/placeholder.png'}"  alt="${item.Name}">
+      <img  src="${item.Images?.PrimaryMedium}"  alt="${item.Name}">
     </a>
     <a href="#">
       <h2 class="card__name">${item.Name}</h2>
