@@ -305,3 +305,32 @@ footer {
   text-align: center;
   cursor: pointer;
 }
+
+form{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: auto;
+  /* border: 1px solid black; */
+}
+form div {
+  width: 100%;
+  /* border:1px solid red; */
+  display: flex;
+  margin-bottom: 5px;
+  align-items: center;
+}
+form div label{
+  width: 30%;
+  display: block;
+  text-align: right;
+  padding-right: 5px;
+}
+.item input{
+  width: 70%;
+  height: 35px;
+}
+form button{
+  width: 50%;
+  margin-left: 40%;
+}
