@@ -1,20 +1,22 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
+
+loadHeaderFooter();
 
 const params = new URLSearchParams(window.location.search);
 const category = params.get("category");
 
-// console.log("Category:", category);
-// console.log("Base URL:", import.meta.env.VITE_SERVER_URL);
-// console.log("Hello World")
-
-const dataSource = new ProductData();
-
+const dataSource = new ExternalServices();
 const element = document.querySelector(".product-list");
 
 const productList = new ProductList(category, dataSource, element);
 
-loadHeaderFooter();
+await productList.init(); // fetch products and render
 
-productList.init();
+// Search input for filtering inside category
+const searchInput = document.querySelector("#category-search");
+
+searchInput.addEventListener("input", (e) => {
+  productList.filterByName(e.target.value);
+});
