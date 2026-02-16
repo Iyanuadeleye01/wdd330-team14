@@ -12,7 +12,12 @@ const element = document.querySelector(".product-list");
 
 const productList = new ProductList(category, dataSource, element);
 
-await productList.init(); // fetch products and render
+
+async function initPage() {
+  await productList.init();
+}
+
+initPage();
 
 // Search input for filtering inside category
 const searchInput = document.querySelector("#category-search");
